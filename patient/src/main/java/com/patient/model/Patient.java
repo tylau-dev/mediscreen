@@ -1,4 +1,4 @@
-package com.mediscreen.model;
+package com.patient.model;
 
 import jakarta.persistence.*;
 

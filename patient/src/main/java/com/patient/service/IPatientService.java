@@ -1,6 +1,6 @@
-package com.mediscreen.service;
+package com.patient.service;
 
-import com.mediscreen.model.Patient;
+import com.patient.model.Patient;
 
 import java.util.Optional;
 

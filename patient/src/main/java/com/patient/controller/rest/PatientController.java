@@ -1,11 +1,10 @@
-package com.mediscreen.controller.rest;
+package com.patient.controller.rest;
 
-import com.mediscreen.model.Patient;
-import com.mediscreen.service.IPatientService;
+import com.patient.model.Patient;
+import com.patient.service.IPatientService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.MediaType;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

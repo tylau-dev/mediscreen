@@ -1,7 +1,7 @@
-package com.mediscreen.service;
+package com.patient.service;
 
-import com.mediscreen.model.Patient;
-import com.mediscreen.repository.PatientRepository;
+import com.patient.model.Patient;
+import com.patient.repository.PatientRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

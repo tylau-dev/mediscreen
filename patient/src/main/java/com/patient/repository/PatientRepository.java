@@ -1,6 +1,6 @@
-package com.mediscreen.repository;
+package com.patient.repository;
 
-import com.mediscreen.model.Patient;
+import com.patient.model.Patient;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

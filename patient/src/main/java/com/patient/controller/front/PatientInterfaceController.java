@@ -1,4 +1,4 @@
-package com.mediscreen.controller.front;
+package com.patient.controller.front;
 
 public class PatientInterfaceController {
 }
