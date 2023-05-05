@@ -66,6 +66,7 @@ public class PatientController {
         }
     }
 
+    // Virer le try/catch
     @RequestMapping(value = {"/api/patient"}, method = RequestMethod.DELETE,
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})

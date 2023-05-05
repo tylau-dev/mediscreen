@@ -1,0 +1,47 @@
+version: '3.1'
+
+services:
+  mysqldb:
+    image: mysql:8.0
+    container_name: mysqldb
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mediscreen
+      MYSQL_USER: user
+      MYSQL_PASSWORD: root
+    networks:
+      - default
+    ports:
+      - "3307:3307"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  mongodb:
+    image: mongo:4
+    container_name: mongodb
+    ports:
+      - "8082:8082"
+    volumes:
+      - mongodb_data:/data/db
+
+  patient:
+    depends_on:
+      - mysqldb
+    image: patient
+    container_name: patient
+    build:
+      context: patient
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    networks:
+      - default
+    environment:
+      - "spring.datasource.url=jdbc:mysql://mysqldb:3306/mediscreen?serverTimezone=UTC"
+      - "spring.datasource.username=user"
+      - "spring.datasource.password=root"
+
+volumes:
+  mysql_data:
+  mongodb_data:
