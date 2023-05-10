@@ -1,4 +1,4 @@
-package com.patient.controller.rest;
+package com.patient.controller;
 
 import com.patient.model.Patient;
 import com.patient.service.IPatientService;
@@ -42,7 +42,7 @@ public class PatientController {
 
         try {
             Patient createdPatient = patientService.savePatient(patient);
-            return ResponseEntity.created(URI.create("Patient created"))
+            return ResponseEntity.created(URI.create("/api/patient"))
                     .body(createdPatient);
         } catch (Exception e) {
             logger.error("Error while creating new patient : %s", e.toString());
@@ -58,7 +58,7 @@ public class PatientController {
 
         try {
             Patient editedPatient = patientService.savePatient(patient);
-            return ResponseEntity.created(URI.create("Patient edited"))
+            return ResponseEntity.created(URI.create("/api/patient"))
                     .body(editedPatient);
         } catch (Exception e) {
             logger.error("Error while modifying patient : %s", e.toString());
@@ -75,7 +75,7 @@ public class PatientController {
 
         try {
             patientService.deletePatientById(patient.getPatientId());
-            return ResponseEntity.created(URI.create("Patient deleted"))
+            return ResponseEntity.created(URI.create("/api/patient"))
                     .body(patient);
         } catch (Exception e) {
             logger.error("Error while deleting patient : %s", e.toString());

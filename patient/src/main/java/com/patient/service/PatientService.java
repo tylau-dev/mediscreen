@@ -30,7 +30,6 @@ public class PatientService implements IPatientService {
     @Override
     @Transactional
     public Patient savePatient(Patient patient) {
-        
         return patientRepository.save(patient);
     }
 
