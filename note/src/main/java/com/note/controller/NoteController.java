@@ -25,9 +25,9 @@ public class NoteController {
         this.noteService = noteService;
     }
 
-    @RequestMapping(value = {"/api/note/all"}, method = RequestMethod.GET, params = {"patientId"})
+    @RequestMapping(value = {"/api/note"}, method = RequestMethod.GET, params = {"patientId"})
     public List<Note> getAllNoteByPatientId(int patientId) {
-        logger.info("GET request to /api/note/all");
+        logger.info("GET request to /api/note");
         return StreamSupport.stream(noteService.getAllNotesByPatientId(patientId).spliterator(), false).collect(Collectors.toList());
     }
 
