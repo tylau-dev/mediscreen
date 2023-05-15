@@ -39,7 +39,7 @@ public class NoteController {
 
         try {
             noteService.saveNote(note);
-            return ResponseEntity.created(URI.create("note created"))
+            return ResponseEntity.created(URI.create("/api/note"))
                     .body(note);
         } catch (Exception e) {
             logger.error("Error while creating new note : %s", e.toString());
@@ -55,7 +55,7 @@ public class NoteController {
 
         try {
             noteService.saveNote(note);
-            return ResponseEntity.created(URI.create("Note edited"))
+            return ResponseEntity.created(URI.create("/api/note"))
                     .body(note);
         } catch (Exception e) {
             logger.error("Error while modifying note : %s", e.toString());
@@ -71,7 +71,7 @@ public class NoteController {
 
         try {
             noteService.deleteNoteById(id);
-            return ResponseEntity.created(URI.create("note deleted"))
+            return ResponseEntity.created(URI.create("/api/note"))
                     .body(id);
         } catch (Exception e) {
             logger.error("Error while deleting note : %s", e.toString());
