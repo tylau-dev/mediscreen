@@ -1,17 +1,17 @@
 package com.alert.model;
 
 public class Alert {
-    private string patientFullName;
+    private String patientFullName;
 
     private int patientAge;
 
-    private string assessment;
+    private String assessment;
 
-    public string getPatientFullName() {
+    public String getPatientFullName() {
         return patientFullName;
     }
 
-    public void setPatientFullName(string patientFullName) {
+    public void setPatientFullName(String patientFullName) {
         this.patientFullName = patientFullName;
     }
 
@@ -23,11 +23,11 @@ public class Alert {
         this.patientAge = patientAge;
     }
 
-    public string getAssessment() {
+    public String getAssessment() {
         return assessment;
     }
 
-    public void setAssessment(string assessment) {
+    public void setAssessment(String assessment) {
         this.assessment = assessment;
     }
 }
