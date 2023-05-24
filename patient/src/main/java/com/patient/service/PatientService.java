@@ -26,6 +26,11 @@ public class PatientService implements IPatientService {
     public Optional<Patient> getPatientById(Integer id) {
         return patientRepository.findById(id);
     }
+    @Override
+    @Transactional
+    public Optional<Patient> getPatientByLastName(String lastName) {
+        return patientRepository.findByLastName(lastName);
+    }
 
     @Override
     @Transactional

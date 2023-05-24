@@ -7,6 +7,7 @@ import java.util.Optional;
 public interface IPatientService {
     Iterable<Patient> getPatients();
     Optional<Patient> getPatientById(Integer id);
+    Optional<Patient> getPatientByLastName(String lastName);
     Patient savePatient(Patient patient);
     void deletePatientById(Integer id);
 }

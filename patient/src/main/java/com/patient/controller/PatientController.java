@@ -32,6 +32,13 @@ public class PatientController {
     public Patient getPatientById(@RequestParam(value = "id") int id) {
         logger.info("GET request to /api/patient?id=%s", id);
         return patientService.getPatientById(id).get();
+
+
+    }
+    @RequestMapping(value = {"/api/patient"}, method = RequestMethod.GET, params = {"lastName"})
+    public Patient getPatientByLastName(@RequestParam(value = "lastName") String lastName) {
+        logger.info("GET request to /api/patient?lastName=%s", lastName);
+        return patientService.getPatientByLastName(lastName).get();
     }
 
     @RequestMapping(value = {"/api/patient"}, method = RequestMethod.POST,
