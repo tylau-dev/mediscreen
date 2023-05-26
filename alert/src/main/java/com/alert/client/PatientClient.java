@@ -14,7 +14,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 @Component
-public class PatientClient {
+public class PatientClient implements  IPatientClient {
     @Autowired
     private EndpointProperties endpointProperties;
     private RestTemplate restTemplate;

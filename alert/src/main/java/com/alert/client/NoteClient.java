@@ -1,6 +1,7 @@
 package com.alert.client;
 
 import com.alert.configuration.EndpointProperties;
+import com.alert.model.Note;
 import com.alert.model.Patient;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-public class NoteClient {
+public class NoteClient implements INoteClient {
     @Autowired
     private EndpointProperties endpointProperties;
     private RestTemplate restTemplate;
@@ -19,10 +20,10 @@ public class NoteClient {
         restTemplate = new RestTemplate();
 
     }
-    public Patient getNoteByPatientId(int patientId) {
+    public Note getNoteByPatientId(int patientId) {
         ResponseEntity<String> response = restTemplate.getForEntity(endpointProperties.getNoteUri() + String.format("/api/note?id=%s", patientId), String.class);
         String responseBody = response.getBody();
 
-        return gson.fromJson(responseBody, Patient.class);
+        return gson.fromJson(responseBody, Note.class);
     }
 }
