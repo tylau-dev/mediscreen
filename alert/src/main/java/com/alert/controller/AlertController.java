@@ -31,9 +31,9 @@ public class AlertController {
         logger.info("POST request to /api/Alert");
 
         try {
-            Alert createdAlert = AlertService.generateAlertById(alertBodyId.getPatId());;
+            Alert assessment = AlertService.generateAlertById(alertBodyId.getPatId());;
             return ResponseEntity.created(URI.create("/api/Alert"))
-                    .body(createdAlert);
+                    .body(assessment);
         } catch (Exception e) {
             logger.error("Error while creating new Alert : %s", e.toString());
             return ResponseEntity.badRequest().body(new Alert());
@@ -47,9 +47,9 @@ public class AlertController {
         logger.info("POST request to /api/Alert");
 
         try {
-            Alert createdAlert = AlertService.generateAlertByFamilyName(alertBodyFamilyName.getFamilyName());;
+            Alert assessment = AlertService.generateAlertByFamilyName(alertBodyFamilyName.getFamilyName());;
             return ResponseEntity.created(URI.create("/api/Alert"))
-                    .body(createdAlert);
+                    .body(assessment);
         } catch (Exception e) {
             logger.error("Error while creating new Alert : %s", e.toString());
             return ResponseEntity.badRequest().body(new Alert());

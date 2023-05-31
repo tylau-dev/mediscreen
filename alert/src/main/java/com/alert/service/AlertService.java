@@ -8,6 +8,7 @@ import com.alert.helper.GetAge;
 import com.alert.model.Alert;
 import com.alert.model.Note;
 import com.alert.model.Patient;
+import com.alert.model.response.NoteListResponse;
 import org.springframework.stereotype.Service;
 
 import java.text.Format;
@@ -53,27 +54,32 @@ public class AlertService implements IAlertService {
 
     public Alert generateAlertById(int id) {
         Patient patient = patientClient.getPatientById(id);
-        Note note = noteClient.getNoteByPatientId(patient.getPatientId());
+        List<Note> notes = noteClient.getNoteByPatientId(patient.getPatientId());
 
-        return assessRiskWithPatientAndNote(patient, note);
+        return assessRiskWithPatientAndNote(patient, notes);
     }
     public Alert generateAlertByFamilyName(String lastName) {
         Patient patient = patientClient.getPatientByFamilyName(lastName);
-        Note note = noteClient.getNoteByPatientId(patient.getPatientId());
+        List<Note> notes = noteClient.getNoteByPatientId(patient.getPatientId());
 
-        return assessRiskWithPatientAndNote(patient, note);
+        return assessRiskWithPatientAndNote(patient, notes);
     }
 
-    private Alert assessRiskWithPatientAndNote(Patient patient, Note note) {
+    private Alert assessRiskWithPatientAndNote(Patient patient, List<Note> notes) {
         int patientAge = GetAge.calculateBasedOnBirthdate(patient.getBirthDate());
+        String noteText = new String();
+        for (Note note : notes) {
+            noteText += note.getNote();
+        }
+
 
         boolean ageCheck = isAgeOverThirty(patientAge);
-        int riskTrigger = countTrigger(note.getNote());
+        int riskTrigger = countTrigger(noteText);
         RiskLevel riskLevel = assessRisk(ageCheck, riskTrigger, patient.getGender());
 
         return new Alert() {
             {
-                setPatientFullName(String.format("%s %s", patient.getLastName(), patient.getLastName()));
+                setPatientFullName(String.format("%s %s", patient.getLastName(), patient.getFirstName()));
                 setPatientAge(patientAge);
                 setAssessment(RiskLabel.get(riskLevel));
             }
