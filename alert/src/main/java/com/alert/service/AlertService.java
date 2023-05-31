@@ -69,7 +69,7 @@ public class AlertService implements IAlertService {
         int patientAge = GetAge.calculateBasedOnBirthdate(patient.getBirthDate());
         String noteText = new String();
         for (Note note : notes) {
-            noteText += note.getNote();
+            noteText += note.getNote() + ' ';
         }
 
 
@@ -96,7 +96,7 @@ public class AlertService implements IAlertService {
     }
 
     private int countTrigger(String note) {
-        List<String> noteList = new ArrayList<String>(Arrays.asList(note.split(",")));
+        List<String> noteList = new LinkedList<String>(Arrays.asList(note.split(" ")));
         noteList.retainAll(triggerList);
 
         return noteList.size();
