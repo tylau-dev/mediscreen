@@ -6,9 +6,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "endpoint")
 public class EndpointProperties {
-
     private String patientUri;
     private String noteUri;
+
+    private String alertUri;
 
     public String getPatientUri() {
         return patientUri;
@@ -24,5 +25,13 @@ public class EndpointProperties {
 
     public void setNoteUri(String noteUri) {
         this.noteUri = noteUri;
+    }
+
+    public String getAlertUri() {
+        return alertUri;
+    }
+
+    public void setAlertUri(String alertUri) {
+        this.alertUri = alertUri;
     }
 }

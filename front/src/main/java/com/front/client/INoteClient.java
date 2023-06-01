@@ -1,6 +1,6 @@
 package com.front.client;
 
-import com.alert.model.Note;
+import com.front.model.Note;
 
 import java.util.List;
 

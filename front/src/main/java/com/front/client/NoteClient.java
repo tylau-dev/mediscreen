@@ -1,7 +1,7 @@
 package com.front.client;
 
-import com.alert.configuration.EndpointProperties;
-import com.alert.model.Note;
+import com.front.configuration.EndpointProperties;
+import com.front.model.Note;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
