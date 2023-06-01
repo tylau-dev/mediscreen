@@ -1,21 +1,12 @@
-package com.note.model;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.alert.model;
 
 import java.util.Date;
 
-@Document(collection = "notes")
 public class Note {
-    @Id
     private String id;
     private int patientId;
     private String note;
     private Date date;
-
-    public Note() {
-
-    }
 
     public Note(String id, int patientId,String note, Date date) {
         this.id = id;
