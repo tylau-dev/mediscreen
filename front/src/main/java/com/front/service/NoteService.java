@@ -26,8 +26,8 @@ public class NoteService implements INoteService {
     public void updateNote(Note note) {
         noteClient.updateNote(note);
     }
-    public void deleteNote(Note note) {
-        noteClient.deleteNote(note);
+    public void deleteNote(String id) {
+        noteClient.deleteNote(id);
     }
 
 }

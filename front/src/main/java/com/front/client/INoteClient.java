@@ -8,5 +8,5 @@ public interface INoteClient {
     public List<Note> getNoteByPatientId(int patientId);
     void addNote(Note note);
     void updateNote(Note note);
-    void deleteNote(Note note);
+    void deleteNote(String id);
 }

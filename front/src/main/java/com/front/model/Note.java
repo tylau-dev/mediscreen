@@ -8,6 +8,9 @@ public class Note {
     private String note;
     private Date date;
 
+    public Note() {
+
+    }
     public Note(String id, int patientId,String note, Date date) {
         this.id = id;
         this.patientId = patientId;

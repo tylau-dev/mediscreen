@@ -46,9 +46,9 @@ public class NoteClient implements INoteClient {
 
         restTemplate.exchange(endpointProperties.getPatientUri() + "/api/note", HttpMethod.PUT, request, Void.class);
     }
-    public void deleteNote(Note note) {
+    public void deleteNote(String id) {
         HttpHeaders headers = createJsonHeader();
-        HttpEntity<Note> request = new HttpEntity<Note>(note, headers);
+        HttpEntity<String> request = new HttpEntity<String>(id, headers);
 
         restTemplate.exchange(endpointProperties.getPatientUri() + "/api/note", HttpMethod.DELETE, request, Void.class);
     }
