@@ -6,6 +6,9 @@ import java.util.List;
 
 public interface IPatientClient {
     List<Patient> getAllPatient();
-    public Patient getPatientById(int id);
-    public Patient getPatientByFamilyName(String lastName);
+    Patient getPatientById(int id);
+    Patient getPatientByFamilyName(String lastName);
+    void addPatient(Patient patient);
+    void updatePatient(Patient patient);
+    void deletePatient(Patient patient);
 }

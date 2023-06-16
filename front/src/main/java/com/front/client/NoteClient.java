@@ -2,10 +2,11 @@ package com.front.client;
 
 import com.front.configuration.EndpointProperties;
 import com.front.model.Note;
+import com.front.model.Patient;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -32,4 +33,32 @@ public class NoteClient implements INoteClient {
         ArrayList<Note> deserializedResponse = gson.fromJson(responseBody, noteListType);
         return deserializedResponse;
     }
+
+    public void addNote(Note note) {
+        HttpHeaders headers = createJsonHeader();
+        HttpEntity<Note> request = new HttpEntity<Note>(note, headers);
+        String response = restTemplate.postForObject(endpointProperties.getPatientUri() + "/api/note", request, String.class);
+    }
+
+    public void updateNote(Note note) {
+        HttpHeaders headers = createJsonHeader();
+        HttpEntity<Note> request = new HttpEntity<Note>(note, headers);
+
+        restTemplate.exchange(endpointProperties.getPatientUri() + "/api/note", HttpMethod.PUT, request, Void.class);
+    }
+    public void deleteNote(Note note) {
+        HttpHeaders headers = createJsonHeader();
+        HttpEntity<Note> request = new HttpEntity<Note>(note, headers);
+
+        restTemplate.exchange(endpointProperties.getPatientUri() + "/api/note", HttpMethod.DELETE, request, Void.class);
+    }
+
+
+    public HttpHeaders createJsonHeader() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        return headers;
+    }
+
 }

@@ -1,7 +1,9 @@
 package com.front.controller;
 
+import com.front.model.Note;
 import com.front.model.Patient;
 import com.front.service.IAlertService;
+import com.front.service.INoteService;
 import com.front.service.IPatientService;
 import jakarta.validation.Valid;
 import org.apache.logging.log4j.LogManager;
@@ -20,20 +22,22 @@ import java.util.List;
 
 
 @Controller
-public class PatientFrontController {
+public class NoteFrontController {
     private static final Logger logger = LogManager.getLogger("PatientFrontController");
 
     @Autowired
     private IPatientService patientService;
-//    private IAlertService alertService;
+    @Autowired
+    private IAlertService alertService;
+    @Autowired
+    private INoteService noteService;
 
+    @RequestMapping("/note/{id}")
+    public String home(@PathVariable("id") Integer id, Model model) {
+        logger.info("GET /note/list");
 
-    @RequestMapping("/patient/list")
-    public String home(Model model) {
-        logger.info("GET /patient/list");
-
-        List<Patient> patients = new ArrayList<Patient>();
-        this.patientService.retrieveAllPatient().forEach(patients::add);
+        List<Note> patients = new ArrayList<Note>();
+        this.noteService.retrieveNoteByPatientId(id).forEach(patients::add);
         model.addAttribute("patientList", patients);
 
         return "patient/list";

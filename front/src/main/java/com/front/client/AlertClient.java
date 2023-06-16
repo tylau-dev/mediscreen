@@ -12,12 +12,13 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class AlertClient implements IAlertClient {
     @Autowired
     private EndpointProperties endpointProperties;

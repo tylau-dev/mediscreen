@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Mediscreen Patient </title>
+    <link rel="stylesheet" href="/css/styles.css"/>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <a href="/patient/list">Patient List</a>&nbsp
+            </div>
+        </div>
+        <div class="row"><h2>Patient</h2></div>
+        <div class="row">
+            <a href="/patient/add" class="btn btn-primary btn-sm">Add Patient</a>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Patient Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Birth Date</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>Telephone</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="patient : ${patientList}">
+                    <td style="width: 10%" th:text="${patient.patientId}"></td>
+                    <td th:text="${patient.firstName}"></td>
+                    <td th:text="${patient.lastName}"></td>
+                    <td th:text="${patient.birthDate}"></td>
+                    <td th:text="${patient.gender}"></td>
+                    <td th:text="${patient.address}"></td>
+                    <td th:text="${patient.telephone}"></td>
+                    <td style="width: 15%" class="text-center">
+                        <a th:href="@{/note/{id}(id=${patient.patientId})}">Notes and Details</a>
+                        <a th:href="@{/patient/edit/{id}(id=${patient.patientId})}">Edit</a>&nbsp
+                        <a th:href="@{/patient/delete/{id}(id=${patient.patientId})}">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
