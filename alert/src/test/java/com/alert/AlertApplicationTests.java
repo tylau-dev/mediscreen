@@ -1,10 +1,10 @@
-package com.patient;
+package com.alert;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class PatientApplicationTests {
+@SpringBootTest(classes = AlertApplication.class)
+class AlertApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -12,56 +12,36 @@
     </div>
 
     <div class="row">
-        <form action="#" th:action="@{/patient/validate}" th:object="${patient}" method="post" class="form-horizontal" style="width: 100%">
+        <form action="#" th:action="@{/note/validate/add}" th:object="${noteToAdd}" method="post" class="form-horizontal" style="width: 100%">
             <div class="form-group">
-                <label for="firstName" class="col-sm-2 control-label">First Name</label>
+                <label for="note" class="col-sm-2 control-label">Patient Id</label>
                 <div class="col-sm-10">
-                    <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name" class="col-4">
-                    <p class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="lastName" class="col-sm-2 control-label">Last Name</label>
-                <div class="col-sm-10">
-                    <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name" class="col-4">
-                    <p class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+                    <input type="text" th:field="*{patientId}" id="patientId" class="col-4">
+                    <p class="text-danger" th:if="${#fields.hasErrors('patientId')}" th:errors="*{patientId}"></p>
                 </div>
             </div>
 
-            // Check Date form
             <div class="form-group">
-                <label for="birthDate" class="col-sm-2 control-label">Birth Date</label>
+                <label for="note" class="col-sm-2 control-label">Note Content</label>
                 <div class="col-sm-10">
-                    <input type="string" th:field="*{birthDate}" id="birthDate" placeholder="birthDate" class="col-4">
-                    <p class="text-danger" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></p>
+                    <input type="text" th:field="*{note}" id="note" placeholder="" class="col-4">
+                    <p class="text-danger" th:if="${#fields.hasErrors('note')}" th:errors="*{note}"></p>
                 </div>
             </div>
+
+            // YYYY-MM-DD format
             <div class="form-group">
-                <label for="gender" class="col-sm-2 control-label">Gender</label>
+                <label for="date" class="col-sm-2 control-label">Date</label>
                 <div class="col-sm-10">
-                    <input type="text" th:field="*{gender}" id="gender" placeholder="Gender" class="col-4">
-                    <p class="text-danger" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="address" class="col-sm-2 control-label">Address</label>
-                <div class="col-sm-10">
-                    <input type="text" th:field="*{address}" id="address" placeholder="Address" class="col-4">
-                    <p class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="telephone" class="col-sm-2 control-label">Telephone</label>
-                <div class="col-sm-10">
-                    <input type="text" th:field="*{telephone}" id="telephone" placeholder="Telephone" class="col-4">
-                    <p class="text-danger" th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}"></p>
+                    <input type="string" th:field="*{date}" id="date" placeholder="date" class="col-4">
+                    <p class="text-danger" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></p>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-sm-12">
                     <a class="btn btn-danger btn-sm" href="/patient/list">Cancel</a>
-                    <input class="btn btn-primary btn-sm" type="submit" value="Add Bid">
+                    <input class="btn btn-primary btn-sm" type="submit" value="Add Note">
                 </div>
             </div>
         </form>

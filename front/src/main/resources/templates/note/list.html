@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <a th:href="@{/note/{patientId}/add(patientId=${patient.patientId})}" class="btn btn-primary btn-sm">Add Note</a>
+            <a th:href="@{/note/{patientId}/add(patientId=${patientId})}" class="btn btn-primary btn-sm">Add Note</a>
 
             <table class="table table-bordered">
                 <thead>
@@ -35,12 +35,11 @@
                 <tr th:each="note : ${noteList}">
                     <td style="width: 10%" th:text="${note.id}"></td>
                     <td th:text="${note.patientId}"></td>
-                    <td th:text="${patient.lastName}"></td>
                     <td th:text="${note.note}"></td>
                     <td th:text="${note.date}"></td>
                     <td style="width: 15%" class="text-center">
                         <a th:href="@{/note/{patientId}/edit/{id}(patientId=${note.patientId}, id=${note.id})}">Edit</a>&nbsp
-                        <a th:href="@{/patient/{patientId}/delete/{id}(patientId=${note.patientId}, id=${note.id})}">Delete</a>
+                        <a th:href="@{/note/{patientId}/delete/{id}(patientId=${note.patientId}, id=${note.id})}">Delete</a>
                     </td>
                 </tr>
                 </tbody>

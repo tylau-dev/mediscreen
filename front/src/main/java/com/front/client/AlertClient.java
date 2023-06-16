@@ -38,7 +38,7 @@ public class AlertClient implements IAlertClient {
         String alertBodyString = gson.toJson(alertBodyId);
 
         HttpEntity<String> request = new HttpEntity<String>(alertBodyString, headers);
-        ResponseEntity<String> response = restTemplate.postForEntity(endpointProperties.getAlertUri() + "api/assess/id", request, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(endpointProperties.getAlertUri() + "/api/assess/id", request, String.class);
         String responseBody = response.getBody();
 
         Alert deserializedResponse = gson.fromJson(responseBody, Alert.class);

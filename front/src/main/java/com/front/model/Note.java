@@ -18,6 +18,10 @@ public class Note {
         this.date = date;
     }
 
+    public Note(int patientId) {
+        this.patientId = patientId;
+    }
+
     public String getId() {
         return id;
     }

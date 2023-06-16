@@ -32,18 +32,16 @@ public class NoteFrontController {
     private IAlertService alertService;
     @Autowired
     private INoteService noteService;
-    private List<Note> notes;
 
     @RequestMapping("/note/{patientId}")
     public String home(@PathVariable("patientId") Integer patientId, Model model) {
         logger.info("GET /note/list");
 
-        this.notes = new ArrayList<Note>();
-        this.noteService.retrieveNoteByPatientId(patientId).forEach(this.notes::add);
-        model.addAttribute("noteList", this.notes);
+        List<Note> notes = new ArrayList<Note>();
+        this.noteService.retrieveNoteByPatientId(patientId).forEach(notes::add);
+        model.addAttribute("noteList", notes);
 
-        Patient patient = this.patientService.retrievePatientById(patientId);
-        model.addAttribute("patient", patient);
+        model.addAttribute("patientId", patientId);
 
         String alert = this.alertService.retrieveAssessmentByPatientId(patientId);
         model.addAttribute("alert", alert);
@@ -52,8 +50,11 @@ public class NoteFrontController {
     }
 
     @RequestMapping("/note/{patientId}/add")
-    public String addNoteForm(@PathVariable("patientId") Integer patientId, Note note) {
+    public String addNoteForm(@PathVariable("patientId") Integer patientId, Model model) {
         logger.info("GET /note/add");
+        Note noteToAdd = new Note(patientId);
+        noteToAdd.setPatientId(patientId);
+        model.addAttribute("noteToAdd", noteToAdd);
 
         return "note/add";
     }
@@ -61,20 +62,45 @@ public class NoteFrontController {
     @RequestMapping("/note/{patientId}/edit/{id}")
     public String updatePatientForm(@PathVariable("patientId") Integer patientId, @PathVariable("id") String id, Model model) {
         logger.info("GET /note/edit");
+
         Note noteToEdit = new Note();
 
-        for (Note note: this.notes) {
-            if (note.getId() == id) {
-                noteToEdit = note;
+        List<Note> notes = new ArrayList<Note>();
+        this.noteService.retrieveNoteByPatientId(patientId).forEach(notes::add);
+
+        for (Note note: notes) {
+            String idToGet = note.getId();
+
+            if (idToGet.equals(id)) {
+                noteToEdit.setId(note.getId());
+                noteToEdit.setPatientId(note.getPatientId());
+                noteToEdit.setNote(note.getNote());
+                noteToEdit.setDate(note.getDate());
+                break;
             }
         }
 
-        model.addAttribute("note", noteToEdit);
-        return "patient/edit";
+        model.addAttribute("noteToEdit", noteToEdit);
+
+        return "note/edit";
     }
 
-    @PostMapping("/note/{patientId}/validate")
-    public String validate(@PathVariable("patientId") Integer patientId, @Valid Note note, BindingResult result, Model model) {
+    @PostMapping("/note/validate/add")
+    public String validateAdd(@Valid Note note, BindingResult result, Model model) {
+        logger.info("POST /note/validate/add");
+
+        if (result.hasErrors()) {
+            logger.error("Error with form input");
+            return "note/add";
+        }
+
+        noteService.saveNote(note);
+
+        return "redirect:/patient/list";
+    }
+
+    @PostMapping("/note/validate/edit")
+    public String validateEdit(@Valid Note note, BindingResult result, Model model) {
         logger.info("POST /note/validate");
 
         if (result.hasErrors()) {
@@ -98,35 +124,15 @@ public class NoteFrontController {
 
         noteService.updateNote(note);
 
-        // Retrieve the Patient with updated values
-        this.noteService.retrieveNoteByPatientId(note.getPatientId()).forEach(this.notes::add);
-        model.addAttribute("noteList", this.notes);
-
-        Patient patient = this.patientService.retrievePatientById(note.getPatientId());
-        model.addAttribute("patient", patient);
-
-        String alert = this.alertService.retrieveAssessmentByPatientId(note.getPatientId());
-        model.addAttribute("alert", alert);
 
         return "redirect:/patient/list";
     }
 
-    @GetMapping("/patient/{patientId}/delete/{id}")
+    @GetMapping("/note/{patientId}/delete/{id}")
     public String deleteBid(@PathVariable("patientId") Integer patientId, @PathVariable("id") String id, Model model) {
-        logger.info("GET /patient/delete");
+        logger.info("GET /note/delete");
 
         this.noteService.deleteNote(id);
-
-        // Retrieve the Patient with updated values
-        this.noteService.retrieveNoteByPatientId(patientId).forEach(this.notes::add);
-        model.addAttribute("noteList", this.notes);
-
-        Patient patient = this.patientService.retrievePatientById(patientId);
-        model.addAttribute("patient", patient);
-
-        String alert = this.alertService.retrieveAssessmentByPatientId(patientId);
-        model.addAttribute("alert", alert);
-
 
         return "redirect:/patient/list";
     }

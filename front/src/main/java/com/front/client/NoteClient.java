@@ -26,7 +26,7 @@ public class NoteClient implements INoteClient {
 
     }
     public List<Note> getNoteByPatientId(int patientId) {
-        ResponseEntity<String> response = restTemplate.getForEntity(endpointProperties.getNoteUri() + String.format("/api/note/all?patientId=%s", patientId), String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(endpointProperties.getNoteUri() + String.format("/api/note?patientId=%s", patientId), String.class);
         String responseBody = response.getBody();
         Type noteListType = new TypeToken<List<Note>>() {}.getType();
 
@@ -37,20 +37,20 @@ public class NoteClient implements INoteClient {
     public void addNote(Note note) {
         HttpHeaders headers = createJsonHeader();
         HttpEntity<Note> request = new HttpEntity<Note>(note, headers);
-        String response = restTemplate.postForObject(endpointProperties.getPatientUri() + "/api/note", request, String.class);
+        String response = restTemplate.postForObject(endpointProperties.getNoteUri() + "/api/note", request, String.class);
     }
 
     public void updateNote(Note note) {
         HttpHeaders headers = createJsonHeader();
         HttpEntity<Note> request = new HttpEntity<Note>(note, headers);
 
-        restTemplate.exchange(endpointProperties.getPatientUri() + "/api/note", HttpMethod.PUT, request, Void.class);
+        restTemplate.exchange(endpointProperties.getNoteUri() + "/api/note", HttpMethod.PUT, request, Void.class);
     }
     public void deleteNote(String id) {
         HttpHeaders headers = createJsonHeader();
         HttpEntity<String> request = new HttpEntity<String>(id, headers);
 
-        restTemplate.exchange(endpointProperties.getPatientUri() + "/api/note", HttpMethod.DELETE, request, Void.class);
+        restTemplate.exchange(endpointProperties.getNoteUri() + "/api/note", HttpMethod.DELETE, request, Void.class);
     }
 
 
