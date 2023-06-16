@@ -42,7 +42,7 @@ public class NoteController {
             return ResponseEntity.created(URI.create("/api/note"))
                     .body(note);
         } catch (Exception e) {
-            logger.error("Error while creating new note : %s", e.toString());
+            logger.error(e.toString());
             return ResponseEntity.badRequest().body(note);
         }
     }
@@ -58,7 +58,7 @@ public class NoteController {
             return ResponseEntity.created(URI.create("/api/note"))
                     .body(note);
         } catch (Exception e) {
-            logger.error("Error while modifying note : %s", e.toString());
+            logger.error(e.toString());
             return ResponseEntity.badRequest().body(note);
         }
     }
@@ -74,7 +74,7 @@ public class NoteController {
             return ResponseEntity.created(URI.create("/api/note"))
                     .body(id);
         } catch (Exception e) {
-            logger.error("Error while deleting note : %s", e.toString());
+            logger.error(e.toString());
             return ResponseEntity.badRequest().body(id);
         }
     }
