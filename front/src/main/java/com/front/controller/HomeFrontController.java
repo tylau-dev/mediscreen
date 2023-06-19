@@ -11,7 +11,7 @@ public class HomeFrontController {
     public String home() {
         logger.info("GET /");
 
-        return "redirect:/patient/list";
+        return "patient/list";
     }
 
 }

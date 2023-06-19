@@ -65,7 +65,7 @@ public class AlertService implements IAlertService {
         return assessRiskWithPatientAndNote(patient, notes);
     }
 
-    private Alert assessRiskWithPatientAndNote(Patient patient, List<Note> notes) {
+    public Alert assessRiskWithPatientAndNote(Patient patient, List<Note> notes) {
         int patientAge = GetAge.calculateBasedOnBirthdate(patient.getBirthDate());
         String noteText = new String();
         for (Note note : notes) {
@@ -86,7 +86,7 @@ public class AlertService implements IAlertService {
         };
     }
 
-    private boolean isAgeOverThirty(int age) {
+    public boolean isAgeOverThirty(int age) {
         if (age >= 30 ) {
             return true;
         }
@@ -95,14 +95,14 @@ public class AlertService implements IAlertService {
         }
     }
 
-    private int countTrigger(String note) {
+    public int countTrigger(String note) {
         List<String> noteList = new LinkedList<String>(Arrays.asList(note.split(" ")));
         noteList.retainAll(triggerList);
 
         return noteList.size();
     }
 
-    private RiskLevel assessRisk(boolean isAgeOverThirty, int countTrigger, String gender) {
+    public RiskLevel assessRisk(boolean isAgeOverThirty, int countTrigger, String gender) {
         if ((gender == "M" && !isAgeOverThirty && countTrigger >= 5)
                 || (gender == "F" && !isAgeOverThirty && countTrigger >= 7)
                 || (isAgeOverThirty && countTrigger >= 8))

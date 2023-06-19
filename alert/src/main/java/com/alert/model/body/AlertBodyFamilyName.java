@@ -1,6 +1,12 @@
 package com.alert.model.body;
 
 public class AlertBodyFamilyName {
+    public String familyName;
+
+    public AlertBodyFamilyName(String familyName) {
+        this.familyName = familyName;
+    }
+
     public String getFamilyName() {
         return familyName;
     }
@@ -8,7 +14,5 @@ public class AlertBodyFamilyName {
     public void setFamilyName(String familyName) {
         this.familyName = familyName;
     }
-
-    public String familyName;
 
 }
