@@ -25,14 +25,12 @@ public class PatientFrontController {
 
     @Autowired
     private IPatientService patientService;
-//    private IAlertService alertService;
 
-
-    @RequestMapping("/patient/list")
-    public String home(Model model) {
+    @RequestMapping("/")
+    public String patientList(Model model) {
         logger.info("GET /patient/list");
 
-        List<Patient> patients = new ArrayList<Patient>();
+        List<Patient> patients = new ArrayList<>();
         this.patientService.retrieveAllPatient().forEach(patients::add);
         model.addAttribute("patientList", patients);
 
