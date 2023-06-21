@@ -52,8 +52,11 @@ public class NoteFrontController {
     @RequestMapping("/note/{patientId}/add")
     public String addNoteForm(@PathVariable("patientId") Integer patientId, Model model) {
         logger.info("GET /note/add");
-        Note noteToAdd = new Note(patientId);
+
+        Note noteToAdd = new Note();
         noteToAdd.setPatientId(patientId);
+
+        model.addAttribute("patientId", patientId);
         model.addAttribute("noteToAdd", noteToAdd);
 
         return "note/add";
@@ -80,13 +83,14 @@ public class NoteFrontController {
             }
         }
 
+        model.addAttribute("patientId", patientId);
         model.addAttribute("noteToEdit", noteToEdit);
 
         return "note/edit";
     }
 
-    @PostMapping("/note/validate/add")
-    public String validateAdd(@Valid Note note, BindingResult result, Model model) {
+    @PostMapping("/note/{patientId}/validate/add")
+    public String validateAdd(@PathVariable("patientId") Integer patientId, @Valid Note noteToAdd, BindingResult result, Model model) {
         logger.info("POST /note/validate/add");
 
         if (result.hasErrors()) {
@@ -94,9 +98,9 @@ public class NoteFrontController {
             return "note/add";
         }
 
-        noteService.saveNote(note);
-
-        return "redirect:/patient/list";
+        model.addAttribute("patientId", patientId);
+        noteService.saveNote(noteToAdd);
+        return  String.format("redirect:/note/%d/add", patientId);
     }
 
     @PostMapping("/note/validate/edit")
