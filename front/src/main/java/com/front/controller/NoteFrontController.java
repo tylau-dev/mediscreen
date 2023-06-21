@@ -124,7 +124,6 @@ public class NoteFrontController {
 
         noteService.updateNote(note);
 
-
         return "redirect:/patient/list";
     }
 
