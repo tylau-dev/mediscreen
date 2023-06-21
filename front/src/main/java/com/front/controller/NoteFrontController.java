@@ -13,12 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -90,8 +88,9 @@ public class NoteFrontController {
     }
 
     @PostMapping("/note/{patientId}/validate/add")
-    public String validateAdd(@PathVariable("patientId") Integer patientId, @Valid Note noteToAdd, BindingResult result, Model model) {
+    public String validateAdd(@PathVariable("patientId") Integer patientId, @Valid @ModelAttribute("noteToAdd") Note noteToAdd, BindingResult result, Model model) {
         logger.info("POST /note/validate/add");
+        noteToAdd.setDate(new Date());
 
         if (result.hasErrors()) {
             logger.error("Error with form input");
@@ -100,35 +99,22 @@ public class NoteFrontController {
 
         model.addAttribute("patientId", patientId);
         noteService.saveNote(noteToAdd);
-        return  String.format("redirect:/note/%d/add", patientId);
+        return String.format("redirect:/note/%d/add", patientId);
     }
 
-    @PostMapping("/note/validate/edit")
-    public String validateEdit(@Valid Note note, BindingResult result, Model model) {
+    @PostMapping("/note/{patientId}/validate/edit")
+    public String validateEdit(@PathVariable("patientId") Integer patientId, @Valid @ModelAttribute("noteToEdit") Note note, BindingResult result, Model model) {
         logger.info("POST /note/validate");
+        note.setDate(new Date());
 
         if (result.hasErrors()) {
             logger.error("Error with form input");
             return "note/add";
         }
 
-        noteService.saveNote(note);
-
-        return "redirect:/patient/list";
-    }
-
-    @PostMapping("/note/{patientId}/edit/{id}")
-    public String updateBid(@PathVariable("patientId") Integer patientId, @PathVariable("id") String id, @Valid Note note, BindingResult result, Model model) {
-        logger.info("POST /note/edit");
-
-        if (result.hasErrors()) {
-            logger.error("Error with form input");
-            return "patient/edit";
-        }
-
         noteService.updateNote(note);
 
-        return "redirect:/patient/list";
+        return String.format("redirect:/note/%d", patientId);
     }
 
     @GetMapping("/note/{patientId}/delete/{id}")
@@ -137,11 +123,7 @@ public class NoteFrontController {
 
         this.noteService.deleteNote(id);
 
-        return "redirect:/patient/list";
+        return String.format("redirect:/note/%d", patientId);
     }
-
-
-
-
 }
 

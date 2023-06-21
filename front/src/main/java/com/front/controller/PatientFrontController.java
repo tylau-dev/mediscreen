@@ -78,7 +78,6 @@ public class PatientFrontController {
             return "patient/edit";
         }
 
-        // Save also updates automatically with Entity Framework
         patientService.updatePatient(patient);
 
         // Retrieve the Patient with updated values

@@ -13,7 +13,7 @@
     </div>
 
     <div class="row">
-        <form action="#" th:action="@{/note/validate/edit}" th:object="${noteToEdit}" method="post" class="form-horizontal" style="width: 100%">
+        <form action="#" th:action="@{/note/{patientId}/validate/edit(patientId=${patientId})}" th:object="${noteToEdit}" method="post" class="form-horizontal" style="width: 100%">
             <div class="form-group">
                 <label for="note" class="col-sm-2 control-label">Note Id</label>
                 <div class="col-sm-10">
@@ -34,15 +34,6 @@
                 <div class="col-sm-10">
                     <input type="text" th:field="*{note}" id="note" placeholder="" class="col-4">
                     <p class="text-danger" th:if="${#fields.hasErrors('note')}" th:errors="*{note}"></p>
-                </div>
-            </div>
-
-            // YYYY-MM-DD format
-            <div class="form-group">
-                <label for="date" class="col-sm-2 control-label">Date</label>
-                <div class="col-sm-10">
-                    <input type="string" th:field="*{date}" id="date" placeholder="date" class="col-4">
-                    <p class="text-danger" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></p>
                 </div>
             </div>
 
