@@ -65,6 +65,23 @@ public class PatientServiceTest {
     }
 
     @Test
+    void getPatientByLastName_should_return_correct_patient_and_should_call_repository() {
+        // Arrange
+        Patient testPatientOne = new Patient();
+        testPatientOne.setLastName("John");
+        testPatientOne.setPatientId(1);
+
+        when(patientRepository.findByLastName(isA(String.class))).thenReturn(Optional.of(testPatientOne));
+
+        // Act
+        Optional<Patient> result = patientService.getPatientByLastName(testPatientOne.getLastName());
+
+        // Assess
+        assertTrue(result.get().getLastName() == testPatientOne.getLastName());
+        verify(patientRepository, times(1)).findByLastName(isA(String.class));
+    }
+
+    @Test
     void savePatient_should_return_correct_patient_and_should_call_repository() {
         // Arrange
         Patient testPatientOne = new Patient();

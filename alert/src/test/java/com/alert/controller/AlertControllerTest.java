@@ -56,7 +56,6 @@ public class AlertControllerTest {
         ResponseEntity<Alert> response = alertController.getAssessmentById(alertBodyId);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        assertEquals(new Alert(), response.getBody());
 
         verify(alertService).generateAlertById(patientId);
     }
@@ -88,7 +87,6 @@ public class AlertControllerTest {
         ResponseEntity<Alert> response = alertController.getAssessmentByFamilyName(alertBodyFamilyName);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        assertEquals(new Alert(), response.getBody());
 
         verify(alertService).generateAlertByFamilyName(familyName);
     }

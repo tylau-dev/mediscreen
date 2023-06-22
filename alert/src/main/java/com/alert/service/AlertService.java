@@ -31,6 +31,16 @@ public class AlertService implements IAlertService {
         add("Rechute");
         add("Réaction");
         add("Anticorps");
+        add("Cholesterol");
+        add("Reaction");
+        add("Abnormal");
+        add("Smoker");
+        add("LDL");
+        add("Antibodies");
+        add("Height");
+        add("Weight");
+        add("Dizziness");
+        add("Reaction");
     }};
 
     public static enum RiskLevel {
@@ -103,17 +113,17 @@ public class AlertService implements IAlertService {
     }
 
     public RiskLevel assessRisk(boolean isAgeOverThirty, int countTrigger, String gender) {
-        if ((gender == "M" && !isAgeOverThirty && countTrigger >= 5)
-                || (gender == "F" && !isAgeOverThirty && countTrigger >= 7)
+        if ((gender.equals("M")  && !isAgeOverThirty && countTrigger >= 5)
+                || (gender.equals("F") && !isAgeOverThirty && countTrigger >= 7)
                 || (isAgeOverThirty && countTrigger >= 8))
         {
             return RiskLevel.EarlyOnset;
-        } else if ((gender == "M" && !isAgeOverThirty && countTrigger == 3)
-                || (gender == "F" && !isAgeOverThirty && countTrigger == 4)
-                || (isAgeOverThirty && countTrigger == 6)
+        } else if ((gender.equals("M") && !isAgeOverThirty && countTrigger >= 3)
+                || (gender.equals("F") && !isAgeOverThirty && countTrigger >= 4)
+                || (isAgeOverThirty && countTrigger >= 6)
         ) {
             return RiskLevel.Danger;
-        } else if (isAgeOverThirty && countTrigger == 2) {
+        } else if (isAgeOverThirty && countTrigger >= 2) {
             return RiskLevel.Borderline;
         } else {
             return RiskLevel.None;

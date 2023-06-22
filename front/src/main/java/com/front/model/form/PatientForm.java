@@ -1,39 +1,20 @@
-package com.alert.model;
-import org.springframework.format.annotation.DateTimeFormat;
-
+package com.front.model.form;
 import java.util.Date;
 
-public class Patient {
+public class PatientForm {
     private int patientId;
 
     private String firstName;
 
     private String lastName;
 
-    private Date birthDate;
+    private String birthDateString;
 
     private String gender;
 
     private String address;
 
     private String telephone;
-
-    public Patient(int patientId) {
-        this.patientId = patientId;
-    }
-
-    public Patient() {
-    }
-
-    public Patient(int patientId, String firstName, String lastName, Date birthDate, String gender, String address, String telephone) {
-        this.patientId = patientId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.gender = gender;
-        this.address = address;
-        this.telephone = telephone;
-    }
 
     public int getPatientId() {
         return patientId;
@@ -59,12 +40,12 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public String getBirthDate() {
+        return birthDateString;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthDate(String birthDateString) {
+        this.birthDateString = birthDateString;
     }
 
     public String getGender() {

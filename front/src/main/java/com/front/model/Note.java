@@ -1,10 +1,14 @@
 package com.front.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Note {
     private String id;
     private int patientId;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String note;
     private Date date;
 

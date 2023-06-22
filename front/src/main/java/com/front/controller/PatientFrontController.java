@@ -66,7 +66,7 @@ public class PatientFrontController {
 
         patientService.savePatient(patient);
 
-        return "redirect:/patient/list";
+        return "redirect:/";
     }
 
     @PostMapping("/patient/edit/{id}")
@@ -85,7 +85,7 @@ public class PatientFrontController {
         this.patientService.retrieveAllPatient().forEach(patients::add);
         model.addAttribute("patient", patients);
 
-        return "redirect:/patient/list";
+        return "redirect:/";
     }
 
     @GetMapping("/patient/delete/{id}")
@@ -100,7 +100,7 @@ public class PatientFrontController {
         this.patientService.retrieveAllPatient().forEach(patients::add);
         model.addAttribute("patient", patients);
 
-        return "redirect:/patient/list";
+        return "redirect:/";
     }
 
 

@@ -4,7 +4,7 @@ CREATE TABLE patient (
   patient_id tinyint(4) NOT NULL AUTO_INCREMENT,
   first_name VARCHAR(125),
   last_name VARCHAR(125),
-  birth_date TIMESTAMP,
+  birth_date DATE,
   gender VARCHAR(15),
   address VARCHAR(125),
   telephone VARCHAR(125),
