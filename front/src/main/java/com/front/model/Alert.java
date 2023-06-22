@@ -7,6 +7,15 @@ public class Alert {
 
     private String assessment;
 
+    public Alert() {
+    }
+
+    public Alert(String patientFullName, int patientAge, String assessment) {
+        this.patientFullName = patientFullName;
+        this.patientAge = patientAge;
+        this.assessment = assessment;
+    }
+
     public String getPatientFullName() {
         return patientFullName;
     }

@@ -1,9 +1,7 @@
 package com.front.service;
 
 import com.front.client.INoteClient;
-import com.front.client.IPatientClient;
 import com.front.model.Note;
-import com.front.model.Patient;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

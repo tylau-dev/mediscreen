@@ -11,7 +11,7 @@ public class Note {
     public Note() {
 
     }
-    public Note(String id, int patientId,String note, Date date) {
+    public Note(String id, int patientId, String note, Date date) {
         this.id = id;
         this.patientId = patientId;
         this.note = note;
