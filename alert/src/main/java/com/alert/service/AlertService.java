@@ -31,6 +31,16 @@ public class AlertService implements IAlertService {
         add("Rechute");
         add("Réaction");
         add("Anticorps");
+        add("Cholesterol");
+        add("Reaction");
+        add("Abnormal");
+        add("Smoker");
+        add("LDL");
+        add("Antibodies");
+        add("Height");
+        add("Weight");
+        add("Dizziness");
+        add("Reaction");
     }};
 
     public static enum RiskLevel {
@@ -65,7 +75,7 @@ public class AlertService implements IAlertService {
         return assessRiskWithPatientAndNote(patient, notes);
     }
 
-    private Alert assessRiskWithPatientAndNote(Patient patient, List<Note> notes) {
+    public Alert assessRiskWithPatientAndNote(Patient patient, List<Note> notes) {
         int patientAge = GetAge.calculateBasedOnBirthdate(patient.getBirthDate());
         String noteText = new String();
         for (Note note : notes) {
@@ -86,7 +96,7 @@ public class AlertService implements IAlertService {
         };
     }
 
-    private boolean isAgeOverThirty(int age) {
+    public boolean isAgeOverThirty(int age) {
         if (age >= 30 ) {
             return true;
         }
@@ -95,25 +105,25 @@ public class AlertService implements IAlertService {
         }
     }
 
-    private int countTrigger(String note) {
+    public int countTrigger(String note) {
         List<String> noteList = new LinkedList<String>(Arrays.asList(note.split(" ")));
         noteList.retainAll(triggerList);
 
         return noteList.size();
     }
 
-    private RiskLevel assessRisk(boolean isAgeOverThirty, int countTrigger, String gender) {
-        if ((gender == "M" && !isAgeOverThirty && countTrigger >= 5)
-                || (gender == "F" && !isAgeOverThirty && countTrigger >= 7)
+    public RiskLevel assessRisk(boolean isAgeOverThirty, int countTrigger, String gender) {
+        if ((gender.equals("M")  && !isAgeOverThirty && countTrigger >= 5)
+                || (gender.equals("F") && !isAgeOverThirty && countTrigger >= 7)
                 || (isAgeOverThirty && countTrigger >= 8))
         {
             return RiskLevel.EarlyOnset;
-        } else if ((gender == "M" && !isAgeOverThirty && countTrigger == 3)
-                || (gender == "F" && !isAgeOverThirty && countTrigger == 4)
-                || (isAgeOverThirty && countTrigger == 6)
+        } else if ((gender.equals("M") && !isAgeOverThirty && countTrigger >= 3)
+                || (gender.equals("F") && !isAgeOverThirty && countTrigger >= 4)
+                || (isAgeOverThirty && countTrigger >= 6)
         ) {
             return RiskLevel.Danger;
-        } else if (isAgeOverThirty && countTrigger == 2) {
+        } else if (isAgeOverThirty && countTrigger >= 2) {
             return RiskLevel.Borderline;
         } else {
             return RiskLevel.None;

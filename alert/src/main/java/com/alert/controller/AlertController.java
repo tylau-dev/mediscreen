@@ -35,7 +35,7 @@ public class AlertController {
             return ResponseEntity.created(URI.create("/api/Alert"))
                     .body(assessment);
         } catch (Exception e) {
-            logger.error("Error while creating new Alert : %s", e.toString());
+            logger.error(e.toString());
             return ResponseEntity.badRequest().body(new Alert());
         }
     }

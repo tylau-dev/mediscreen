@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Mediscreen Note & Details </title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" >
+</head>
+<body>
+    <div class="container" th:with="patient=${patient}">
+        <div class="row">
+            <div class="col-6">
+                <a href="/">Return to Patient List</a>&nbsp
+            </div>
+        </div>
+        <div class="row"><h2>Patient's Detail Note</h2></div>
+        <div class="row">
+
+            <div class="card mr-2 mb-1">
+                <h5 class="card-header">User Alert level:</h5>
+                <div class="card-body" th:with="userAlert=${alert}">
+                    <span th:text="${userAlert}"></span>
+                </div>
+            </div>
+
+            <div>
+                <a th:href="@{/note/{patientId}/add(patientId=${patientId})}" class="btn btn-primary btn-sm">Add Note</a>
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Note Id</th>
+                    <th>Patient Id</th>
+                    <th>Note Content</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="note : ${noteList}">
+                    <td style="width: 10%" th:text="${note.id}"></td>
+                    <td th:text="${note.patientId}"></td>
+                    <td th:text="${note.note}"></td>
+                    <td th:text="${note.date}"></td>
+                    <td style="width: 15%" class="text-center">
+                        <a th:href="@{/note/{patientId}/edit/{id}(patientId=${note.patientId}, id=${note.id})}">Edit</a>&nbsp
+                        <a th:href="@{/note/{patientId}/delete/{id}(patientId=${note.patientId}, id=${note.id})}">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

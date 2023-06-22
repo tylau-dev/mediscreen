@@ -28,7 +28,7 @@ public class NoteClient implements INoteClient {
 
     }
     public List<Note> getNoteByPatientId(int patientId) {
-        ResponseEntity<String> response = restTemplate.getForEntity(endpointProperties.getNoteUri() + String.format("/api/note/all?patientId=%s", patientId), String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(endpointProperties.getNoteUri() + String.format("/api/note?patientId=%s", patientId), String.class);
         String responseBody = response.getBody();
         Type noteListType = new TypeToken<List<Note>>() {}.getType();
 

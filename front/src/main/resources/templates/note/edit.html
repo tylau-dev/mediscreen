@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Mediscreen Note & Details </title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" >
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h2>Edit Note</h2>
+    </div>
+
+    <div class="row">
+        <form action="#" th:action="@{/note/{patientId}/validate/edit(patientId=${patientId})}" th:object="${noteToEdit}" method="post" class="form-horizontal" style="width: 100%">
+            <div class="form-group">
+                <label for="note" class="col-sm-2 control-label">Note Id</label>
+                <div class="col-sm-10">
+                    <input type="text" th:field="*{id}" id="id" class="col-4">
+                    <p class="text-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="note" class="col-sm-2 control-label">Patient Id</label>
+                <div class="col-sm-10">
+                    <input type="text" th:field="*{patientId}" id="patientId" class="col-4">
+                    <p class="text-danger" th:if="${#fields.hasErrors('patientId')}" th:errors="*{patientId}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="note" class="col-sm-2 control-label">Note Content</label>
+                <div class="col-sm-10">
+                    <input type="text" th:field="*{note}" id="note" placeholder="" class="col-4">
+                    <p class="text-danger" th:if="${#fields.hasErrors('note')}" th:errors="*{note}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <a class="btn btn-danger btn-sm" href="/patient/list">Cancel</a>
+                    <input class="btn btn-primary btn-sm" type="submit" value="Edit Note">
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

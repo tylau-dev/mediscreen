@@ -54,6 +54,42 @@ services:
     environment:
       - "spring.data.mongodb.host=mongodb"
 
+  alert:
+    depends_on:
+    - note
+    - patient
+    image: alert
+    container_name: alert
+    build:
+      context: alert
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    networks:
+      - default
+    environment:
+      - "endpoint.patientUri=http://patient:8081"
+      - "endpoint.noteUri=http://note:8082"
+
+  front:
+    depends_on:
+      - note
+      - patient
+      - alert
+    image: front
+    container_name: front
+    build:
+      context: front
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    networks:
+      - default
+    environment:
+      - "endpoint.patientUri=http://patient:8081"
+      - "endpoint.noteUri=http://note:8082"
+      - "endpoint.alertUri=http://alert:8083"
+
 networks:
   default:
     driver: bridge

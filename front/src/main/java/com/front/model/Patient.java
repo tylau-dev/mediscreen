@@ -1,6 +1,4 @@
-package com.alert.model;
-import org.springframework.format.annotation.DateTimeFormat;
-
+package com.front.model;
 import java.util.Date;
 
 public class Patient {
@@ -17,23 +15,6 @@ public class Patient {
     private String address;
 
     private String telephone;
-
-    public Patient(int patientId) {
-        this.patientId = patientId;
-    }
-
-    public Patient() {
-    }
-
-    public Patient(int patientId, String firstName, String lastName, Date birthDate, String gender, String address, String telephone) {
-        this.patientId = patientId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.gender = gender;
-        this.address = address;
-        this.telephone = telephone;
-    }
 
     public int getPatientId() {
         return patientId;
