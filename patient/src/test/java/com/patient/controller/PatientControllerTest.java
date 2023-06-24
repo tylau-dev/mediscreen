@@ -68,17 +68,17 @@ class PatientControllerTest {
     @Test
     void getPatientByLastName_Endpoint_Should_Return_Patient() {
         // Mock data
-        String lastName = "Smith";
+        String lastname = "Smith";
         Patient testPatient = new Patient();
 
         // Mock the patientService behavior
-        when(patientService.getPatientByLastName(lastName)).thenReturn(Optional.of(testPatient));
+        when(patientService.getPatientByLastName(lastname)).thenReturn(testPatient);
 
         // Perform the test
-        Patient result = patientController.getPatientByLastName(lastName);
+        Patient result = patientController.getPatientByLastName(lastname);
 
         // Verify the interactions and assertions
-        verify(patientService).getPatientByLastName(lastName);
+        verify(patientService).getPatientByLastName(lastname);
         assertEquals(testPatient, result);
     }
 

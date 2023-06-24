@@ -68,8 +68,8 @@ public class AlertService implements IAlertService {
 
         return assessRiskWithPatientAndNote(patient, notes);
     }
-    public Alert generateAlertByFamilyName(String lastName) {
-        Patient patient = patientClient.getPatientByFamilyName(lastName);
+    public Alert generateAlertByFamilyName(String lastname) {
+        Patient patient = patientClient.getPatientByFamilyName(lastname);
         List<Note> notes = noteClient.getNoteByPatientId(patient.getPatientId());
 
         return assessRiskWithPatientAndNote(patient, notes);

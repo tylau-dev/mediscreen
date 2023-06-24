@@ -31,8 +31,8 @@ public class PatientClient implements  IPatientClient {
         return gson.fromJson(responseBody, Patient.class);
     }
 
-    public Patient getPatientByFamilyName(String lastName) {
-        ResponseEntity<String> response = restTemplate.getForEntity(endpointProperties.getPatientUri() + String.format("/api/patient?lastName=%s", lastName), String.class);
+    public Patient getPatientByFamilyName(String lastname) {
+        ResponseEntity<String> response = restTemplate.getForEntity(endpointProperties.getPatientUri() + String.format("/api/patient?lastname=%s", lastname), String.class);
         String responseBody = response.getBody();
 
         return gson.fromJson(responseBody, Patient.class);

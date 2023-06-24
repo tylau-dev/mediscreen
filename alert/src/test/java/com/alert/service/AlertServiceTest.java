@@ -57,7 +57,7 @@ public class AlertServiceTest {
 
     @Test
     public void testGenerateAlertByFamilyName() {
-        String lastName = "Doe";
+        String lastname = "Doe";
         LocalDate currentDate = LocalDate.now();
         LocalDate dateMinuteThirtyYears = currentDate.plusYears(-30);
         Instant instantDateMinuteThirtyYears = dateMinuteThirtyYears.atStartOfDay(ZoneId.systemDefault()).toInstant();
@@ -66,15 +66,15 @@ public class AlertServiceTest {
         List<Note> notes = new ArrayList<>();
         notes.add(new Note("Note 1", 1, "Test Note 1", new Date()));
         notes.add(new Note("Note 2", 1, "Test Note 2", new Date()));
-        when(patientClient.getPatientByFamilyName(lastName)).thenReturn(patient);
+        when(patientClient.getPatientByFamilyName(lastname)).thenReturn(patient);
         when(noteClient.getNoteByPatientId(patient.getPatientId())).thenReturn(notes);
 
-        Alert alert = alertService.generateAlertByFamilyName(lastName);
+        Alert alert = alertService.generateAlertByFamilyName(lastname);
 
         assertEquals("Doe John", alert.getPatientFullName());
         assertEquals(30, alert.getPatientAge());
         assertEquals("None", alert.getAssessment());
-        verify(patientClient).getPatientByFamilyName(lastName);
+        verify(patientClient).getPatientByFamilyName(lastname);
         verify(noteClient).getNoteByPatientId(patient.getPatientId());
     }
 

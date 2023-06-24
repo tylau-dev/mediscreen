@@ -30,15 +30,16 @@ public class PatientController {
 
     @RequestMapping(value = {"/api/patient"}, method = RequestMethod.GET, params = {"id"})
     public Patient getPatientById(@RequestParam(value = "id") int id) {
-        logger.info("GET request to /api/patient?id=%s", id);
+        logger.info(String.format("GET request to /api/patient?id=%s", id));
         return patientService.getPatientById(id).get();
 
 
     }
-    @RequestMapping(value = {"/api/patient"}, method = RequestMethod.GET, params = {"lastName"})
-    public Patient getPatientByLastName(@RequestParam(value = "lastName") String lastName) {
-        logger.info("GET request to /api/patient?lastName=%s", lastName);
-        return patientService.getPatientByLastName(lastName).get();
+    @RequestMapping(value = {"/api/patient"}, method = RequestMethod.GET, params = {"lastname"})
+    public Patient getPatientByLastName(@RequestParam(value = "lastname") String lastname) {
+        logger.info(String.format("GET request to /api/patient?lastname=%s", lastname));
+        Patient result = patientService.getPatientByLastName(lastname);
+        return result;
     }
 
     @RequestMapping(value = {"/api/patient"}, method = RequestMethod.POST,
@@ -52,7 +53,7 @@ public class PatientController {
             return ResponseEntity.created(URI.create("/api/patient"))
                     .body(createdPatient);
         } catch (Exception e) {
-            logger.error("Error while creating new patient : %s", e.toString());
+            logger.error(String.format("Error while creating new patient : %s", e.toString()));
             return ResponseEntity.badRequest().body(patient);
         }
     }
@@ -68,12 +69,11 @@ public class PatientController {
             return ResponseEntity.created(URI.create("/api/patient"))
                     .body(editedPatient);
         } catch (Exception e) {
-            logger.error("Error while modifying patient : %s", e.toString());
+            logger.error(String.format("Error while modifying patient : %s", e.toString()));
             return ResponseEntity.badRequest().body(patient);
         }
     }
 
-    // Virer le try/catch
     @RequestMapping(value = {"/api/patient"}, method = RequestMethod.DELETE,
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -85,7 +85,7 @@ public class PatientController {
             return ResponseEntity.created(URI.create("/api/patient"))
                     .body(patient);
         } catch (Exception e) {
-            logger.error("Error while deleting patient : %s", e.toString());
+            logger.error(String.format("Error while deleting patient : %s", e.toString()));
             return ResponseEntity.badRequest().body(patient);
         }
     }

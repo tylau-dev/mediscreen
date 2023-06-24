@@ -29,8 +29,8 @@
                 <tbody>
                 <tr th:each="patient : ${patientList}">
                     <td style="width: 10%" th:text="${patient.patientId}"></td>
-                    <td th:text="${patient.firstName}"></td>
-                    <td th:text="${patient.lastName}"></td>
+                    <td th:text="${patient.firstname}"></td>
+                    <td th:text="${patient.lastname}"></td>
                     <td th:text="${patient.birthDate}"></td>
                     <td th:text="${patient.gender}"></td>
                     <td th:text="${patient.address}"></td>

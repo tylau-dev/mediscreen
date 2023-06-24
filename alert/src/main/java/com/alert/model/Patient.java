@@ -6,9 +6,9 @@ import java.util.Date;
 public class Patient {
     private int patientId;
 
-    private String firstName;
+    private String firstname;
 
-    private String lastName;
+    private String lastname;
 
     private Date birthDate;
 
@@ -25,10 +25,10 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(int patientId, String firstName, String lastName, Date birthDate, String gender, String address, String telephone) {
+    public Patient(int patientId, String firstname, String lastname, Date birthDate, String gender, String address, String telephone) {
         this.patientId = patientId;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.birthDate = birthDate;
         this.gender = gender;
         this.address = address;
@@ -44,19 +44,19 @@ public class Patient {
     }
 
     public String getFirstName() {
-        return firstName;
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getLastName() {
-        return lastName;
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String lastname) {
+        this.lastname = lastname;
     }
 
     public Date getBirthDate() {
