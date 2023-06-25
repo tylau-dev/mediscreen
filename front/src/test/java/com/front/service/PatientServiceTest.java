@@ -35,7 +35,7 @@ public class PatientServiceTest {
         // Act
         List<Patient> actualPatients = patientService.retrieveAllPatient();
 
-        // Assert
+        // Assess
         assertEquals(expectedPatients, actualPatients);
         verify(patientClient, times(1)).getAllPatient();
     }
@@ -63,7 +63,7 @@ public class PatientServiceTest {
         // Act
         patientService.savePatient(patient);
 
-        // Assert
+        // Assess
         verify(patientClient, times(1)).addPatient(patient);
     }
 
@@ -75,7 +75,7 @@ public class PatientServiceTest {
         // Act
         patientService.updatePatient(patient);
 
-        // Assert
+        // Assess
         verify(patientClient, times(1)).updatePatient(patient);
     }
 
@@ -87,7 +87,7 @@ public class PatientServiceTest {
         // Act
         patientService.deletePatient(patient);
 
-        // Assert
+        // Assess
         verify(patientClient, times(1)).deletePatient(patient);
     }
 }

@@ -33,7 +33,7 @@ class AlertServiceTest {
         // Act
         String assessment = alertService.retrieveAssessmentByPatientId(patientId);
 
-        // Assert
+        // Assess
         assertEquals("Early Onset", assessment);
         verify(alertClient, times(1)).getAlertByPatientId(patientId);
     }

@@ -32,68 +32,64 @@ class PatientControllerTest {
 
     @Test
     void getAllPatient_Endpoint_Should_Return_Patients() {
-        // Mock data
+        // arrange
         List<Patient> testPatients = new ArrayList<>();
         testPatients.add(new Patient());
         testPatients.add(new Patient());
 
-        // Mock the patientService behavior
         when(patientService.getPatients()).thenReturn(testPatients);
 
-        // Perform the test
+        // act
         List<Patient> result = patientController.getAllPatient();
 
-        // Verify the interactions and assertions
+        // assess
         verify(patientService).getPatients();
         assertEquals(testPatients.size(), result.size());
     }
 
     @Test
     void getPatientById_Endpoint_Should_Return_Patient() {
-        // Mock data
+        // arrange
         int patientId = 1;
         Patient testPatient = new Patient();
 
-        // Mock the patientService behavior
         when(patientService.getPatientById(patientId)).thenReturn(Optional.of(testPatient));
 
-        // Perform the test
+        // act
         Patient result = patientController.getPatientById(patientId);
 
-        // Verify the interactions and assertions
+        // assess
         verify(patientService).getPatientById(patientId);
         assertEquals(testPatient, result);
     }
 
     @Test
     void getPatientByLastName_Endpoint_Should_Return_Patient() {
-        // Mock data
         String lastname = "Smith";
         Patient testPatient = new Patient();
 
-        // Mock the patientService behavior
+        // arrange
         when(patientService.getPatientByLastName(lastname)).thenReturn(testPatient);
 
-        // Perform the test
+        // act
         Patient result = patientController.getPatientByLastName(lastname);
 
-        // Verify the interactions and assertions
+        // assess
         verify(patientService).getPatientByLastName(lastname);
         assertEquals(testPatient, result);
     }
 
     @Test
     void addPatient_Endpoint_Should_SavePatient_And_ReturnBody() {
-        // Mock data
+        // arrange
         Patient testPatient = new Patient();
 
-        // Mock the patientService behavior
         when(patientService.savePatient(testPatient)).thenReturn(testPatient);
 
-        // Perform the test
+        // act
         ResponseEntity<Patient> result = patientController.addPatient(testPatient);
 
-        // Verify the interactions and assertions
+        // assess
         verify(patientService).savePatient(testPatient);
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
         assertEquals(URI.create("/api/patient"), result.getHeaders().getLocation());
@@ -102,16 +98,15 @@ class PatientControllerTest {
 
     @Test
     void editPatient_Endpoint_Should_SavePatient_And_ReturnBody() {
-        // Mock data
+        // arrange
         Patient testPatient = new Patient();
 
-        // Mock the patientService behavior
         when(patientService.savePatient(testPatient)).thenReturn(testPatient);
 
-        // Perform the test
+        // act
         ResponseEntity<Patient> result = patientController.editPatient(testPatient);
 
-        // Verify the interactions and assertions
+        // assess
         verify(patientService).savePatient(testPatient);
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
         assertEquals(URI.create("/api/patient"), result.getHeaders().getLocation());
@@ -120,14 +115,14 @@ class PatientControllerTest {
 
     @Test
     void deletePatient_Endpoint_Should_DeletePatient_And_ReturnBody() {
-        // Mock data
+        // arrange
         Patient testPatient = new Patient();
         testPatient.setPatientId(1);
 
-        // Perform the test
+        // act
         ResponseEntity<Patient> result = patientController.deletePatientById(testPatient);
 
-        // Verify the interactions and assertions
+        // assess
         verify(patientService).deletePatientById(testPatient.getPatientId());
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
         assertEquals(URI.create("/api/patient"), result.getHeaders().getLocation());

@@ -28,11 +28,11 @@ public class AlertController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Alert> getAssessmentById(@RequestBody AlertBodyId alertBodyId) {
-        logger.info("POST request to /api/Alert");
+        logger.info("POST request to /api/assess/id");
 
         try {
             Alert assessment = AlertService.generateAlertById(alertBodyId.getPatId());;
-            return ResponseEntity.created(URI.create("/api/Alert"))
+            return ResponseEntity.created(URI.create("/api/assess/id"))
                     .body(assessment);
         } catch (Exception e) {
             logger.error(e.toString());
@@ -40,11 +40,11 @@ public class AlertController {
         }
     }
 
-    @RequestMapping(value = {"/api/assess/familyName"}, method = RequestMethod.POST,
+    @RequestMapping(value = {"/api/assess/familyname"}, method = RequestMethod.GET,
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Alert> getAssessmentByFamilyName(@RequestBody AlertBodyFamilyName alertBodyFamilyName) {
-        logger.info("POST request to /api/Alert");
+        logger.info("POST request to /api/assess/familyname");
 
         try {
             Alert assessment = AlertService.generateAlertByFamilyName(alertBodyFamilyName.getFamilyName());;
@@ -54,6 +54,21 @@ public class AlertController {
             logger.error("Error while creating new Alert : %s", e.toString());
             return ResponseEntity.badRequest().body(new Alert());
         }
+    }
+
+
+    @RequestMapping(value = {"/api/alert"}, method = RequestMethod.GET, params = {"id"})
+    public Alert getAlertById(@RequestParam(value = "id") int patientId) {
+        logger.info(String.format("GET request to /api/alert?patientId=%s", patientId));
+        Alert result = AlertService.generateAlertById(patientId);
+        return result;
+    }
+
+    @RequestMapping(value = {"/api/patient"}, method = RequestMethod.GET, params = {"lastname"})
+    public Alert getAlertByLastName(@RequestParam(value = "lastname") String lastname) {
+        logger.info(String.format(String.format("GET request to /api/patient?lastname=%s", lastname)));
+        Alert result = AlertService.generateAlertByFamilyName(lastname);
+        return result;
     }
 }
 
