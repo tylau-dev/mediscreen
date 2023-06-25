@@ -1,4 +1,6 @@
 package com.front.model;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Patient {
@@ -8,6 +10,7 @@ public class Patient {
 
     private String lastname;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date birthDate;
 
     private String gender;
@@ -24,19 +27,19 @@ public class Patient {
         this.patientId = patientId;
     }
 
-    public String getFirstName() {
+    public String getFirstname() {
         return firstname;
     }
 
-    public void setFirstName(String firstname) {
+    public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
 
-    public String getLastName() {
+    public String getLastname() {
         return lastname;
     }
 
-    public void setLastName(String lastname) {
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
