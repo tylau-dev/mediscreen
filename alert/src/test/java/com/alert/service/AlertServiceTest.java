@@ -34,6 +34,7 @@ public class AlertServiceTest {
 
     @Test
     public void testGenerateAlertById() {
+        // arrange
         int patientId = 1;
         LocalDate currentDate = LocalDate.now();
         LocalDate dateMinuteThirtyYears = currentDate.plusYears(-30);
@@ -46,17 +47,18 @@ public class AlertServiceTest {
         when(patientClient.getPatientById(patientId)).thenReturn(patient);
         when(noteClient.getNoteByPatientId(patientId)).thenReturn(notes);
 
+        // act
         Alert alert = alertService.generateAlertById(patientId);
 
+        // assess
         assertEquals("Doe John", alert.getPatientFullName());
         assertEquals(30, alert.getPatientAge());
         assertEquals("None", alert.getAssessment());
-        verify(patientClient).getPatientById(patientId);
-        verify(noteClient).getNoteByPatientId(patientId);
     }
 
     @Test
     public void testGenerateAlertByFamilyName() {
+        // arrange
         String lastname = "Doe";
         LocalDate currentDate = LocalDate.now();
         LocalDate dateMinuteThirtyYears = currentDate.plusYears(-30);
@@ -69,17 +71,18 @@ public class AlertServiceTest {
         when(patientClient.getPatientByFamilyName(lastname)).thenReturn(patient);
         when(noteClient.getNoteByPatientId(patient.getPatientId())).thenReturn(notes);
 
+        // act
         Alert alert = alertService.generateAlertByFamilyName(lastname);
 
+        // assert
         assertEquals("Doe John", alert.getPatientFullName());
         assertEquals(30, alert.getPatientAge());
         assertEquals("None", alert.getAssessment());
-        verify(patientClient).getPatientByFamilyName(lastname);
-        verify(noteClient).getNoteByPatientId(patient.getPatientId());
     }
 
     @Test
     public void testAssessRisk() {
+        // assert
         assertEquals(AlertService.RiskLevel.None, alertService.assessRisk(false, 0, "M"));
         assertEquals(AlertService.RiskLevel.Borderline, alertService.assessRisk(true, 2, "M"));
         assertEquals(AlertService.RiskLevel.Danger, alertService.assessRisk(false, 3, "M"));

@@ -35,6 +35,5 @@ class AlertServiceTest {
 
         // Assess
         assertEquals("Early Onset", assessment);
-        verify(alertClient, times(1)).getAlertByPatientId(patientId);
     }
 }

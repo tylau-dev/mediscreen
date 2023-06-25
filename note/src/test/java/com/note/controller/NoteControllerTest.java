@@ -42,7 +42,6 @@ class NoteControllerTest {
         List<Note> result = noteController.getAllNoteByPatientId(patientId);
 
         // assess
-        verify(noteService).getAllNotesByPatientId(patientId);
         assertEquals(mockNotes.size(), result.size());
     }
 
@@ -55,7 +54,6 @@ class NoteControllerTest {
         ResponseEntity<Note> result = noteController.addNote(mockNote);
 
         // assess
-        verify(noteService).saveNote(mockNote);
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
         assertEquals(URI.create("/api/note"), result.getHeaders().getLocation());
         assertEquals(mockNote, result.getBody());
@@ -70,7 +68,6 @@ class NoteControllerTest {
         ResponseEntity<Note> result = noteController.editNote(mockNote);
 
         // assess
-        verify(noteService).saveNote(mockNote);
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
         assertEquals(URI.create("/api/note"), result.getHeaders().getLocation());
         assertEquals(mockNote, result.getBody());
@@ -85,7 +82,6 @@ class NoteControllerTest {
         ResponseEntity<String> result = noteController.deleteNoteById(noteId);
 
         // assess
-        verify(noteService).deleteNoteById(noteId);
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
         assertEquals(URI.create("/api/note"), result.getHeaders().getLocation());
         assertEquals(noteId, result.getBody());

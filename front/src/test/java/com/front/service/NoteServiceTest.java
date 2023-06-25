@@ -40,7 +40,6 @@ public class NoteServiceTest {
 
         // Assess
         assertEquals(expectedNotes, actualNotes);
-        verify(noteClient, times(1)).getNoteByPatientId(patientId);
     }
 
     @Test

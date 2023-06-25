@@ -64,9 +64,9 @@ public class AlertController {
         return result;
     }
 
-    @RequestMapping(value = {"/api/patient"}, method = RequestMethod.GET, params = {"lastname"})
+    @RequestMapping(value = {"/api/alert"}, method = RequestMethod.GET, params = {"lastname"})
     public Alert getAlertByLastName(@RequestParam(value = "lastname") String lastname) {
-        logger.info(String.format(String.format("GET request to /api/patient?lastname=%s", lastname)));
+        logger.info(String.format(String.format("GET request to /api/alert?lastname=%s", lastname)));
         Alert result = AlertService.generateAlertByFamilyName(lastname);
         return result;
     }
