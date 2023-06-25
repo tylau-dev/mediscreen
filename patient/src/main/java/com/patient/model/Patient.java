@@ -13,10 +13,10 @@ public class Patient {
     private int patientId;
 
     @Column(name = "first_name")
-    private String firstName;
+    private String firstname;
 
     @Column(name = "last_name")
-    private String lastName;
+    private String lastname;
 
     @Column(name = "birth_date")
     private Date birthDate;
@@ -30,6 +30,18 @@ public class Patient {
     @Column(name = "telephone")
     private String telephone;
 
+    public Patient() {}
+
+    public Patient(int patientId, String firstname, String lastname, Date birthDate, String gender, String address, String telephone) {
+        this.patientId = patientId;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.birthDate = birthDate;
+        this.gender = gender;
+        this.address = address;
+        this.telephone = telephone;
+    }
+
     public int getPatientId() {
         return patientId;
     }
@@ -38,20 +50,20 @@ public class Patient {
         this.patientId = patientId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public Date getBirthDate() {

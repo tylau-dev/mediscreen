@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface IAlertService {
     public Alert generateAlertById(int id);
-    public Alert generateAlertByFamilyName(String lastName);
+    public Alert generateAlertByFamilyName(String lastname);
 }

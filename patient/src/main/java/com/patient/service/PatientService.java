@@ -5,6 +5,9 @@ import com.patient.repository.PatientRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,8 +31,11 @@ public class PatientService implements IPatientService {
     }
     @Override
     @Transactional
-    public Optional<Patient> getPatientByLastName(String lastName) {
-        return patientRepository.findByLastName(lastName);
+    public Patient getPatientByLastName(String lastname) {
+        //List<Patient> result = patientRepository.getPatientByLastName(lastname);
+
+        Optional<Patient> result = patientRepository.getPatientByLastname(lastname);
+        return result.get();
     }
 
     @Override

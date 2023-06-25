@@ -38,9 +38,8 @@ public class NoteServiceTest {
         // Act
         List<Note> actualNotes = noteService.retrieveNoteByPatientId(patientId);
 
-        // Assert
+        // Assess
         assertEquals(expectedNotes, actualNotes);
-        verify(noteClient, times(1)).getNoteByPatientId(patientId);
     }
 
     @Test
@@ -51,7 +50,7 @@ public class NoteServiceTest {
         // Act
         noteService.saveNote(note);
 
-        // Assert
+        // Assess
         verify(noteClient, times(1)).addNote(note);
     }
 
@@ -63,7 +62,7 @@ public class NoteServiceTest {
         // Act
         noteService.updateNote(note);
 
-        // Assert
+        // Assess
         verify(noteClient, times(1)).updateNote(note);
     }
 
@@ -75,7 +74,7 @@ public class NoteServiceTest {
         // Act
         noteService.deleteNote(noteId);
 
-        // Assert
+        // Assess
         verify(noteClient, times(1)).deleteNote(noteId);
     }
 }

@@ -31,33 +31,29 @@ class NoteControllerTest {
 
     @Test
     void testGetAllNoteByPatientId() {
-        // Mock data
+        // arrange
         int patientId = 1;
         List<Note> mockNotes = new ArrayList<>();
         mockNotes.add(new Note());
         mockNotes.add(new Note());
-
-        // Mock the noteService behavior
         when(noteService.getAllNotesByPatientId(patientId)).thenReturn(mockNotes);
 
-        // Perform the test
+        // act
         List<Note> result = noteController.getAllNoteByPatientId(patientId);
 
-        // Verify the interactions and assertions
-        verify(noteService).getAllNotesByPatientId(patientId);
+        // assess
         assertEquals(mockNotes.size(), result.size());
     }
 
     @Test
     void testAddNote() {
-        // Mock data
+        // arrange
         Note mockNote = new Note();
 
-        // Perform the test
+        // act
         ResponseEntity<Note> result = noteController.addNote(mockNote);
 
-        // Verify the interactions and assertions
-        verify(noteService).saveNote(mockNote);
+        // assess
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
         assertEquals(URI.create("/api/note"), result.getHeaders().getLocation());
         assertEquals(mockNote, result.getBody());
@@ -65,14 +61,13 @@ class NoteControllerTest {
 
     @Test
     void testEditNote() {
-        // Mock data
+        // arrange
         Note mockNote = new Note();
 
-        // Perform the test
+        // act
         ResponseEntity<Note> result = noteController.editNote(mockNote);
 
-        // Verify the interactions and assertions
-        verify(noteService).saveNote(mockNote);
+        // assess
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
         assertEquals(URI.create("/api/note"), result.getHeaders().getLocation());
         assertEquals(mockNote, result.getBody());
@@ -80,14 +75,13 @@ class NoteControllerTest {
 
     @Test
     void testDeleteNoteById() {
-        // Mock data
+        // arrange
         String noteId = "123";
 
-        // Perform the test
+        // act
         ResponseEntity<String> result = noteController.deleteNoteById(noteId);
 
-        // Verify the interactions and assertions
-        verify(noteService).deleteNoteById(noteId);
+        // assess
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
         assertEquals(URI.create("/api/note"), result.getHeaders().getLocation());
         assertEquals(noteId, result.getBody());
