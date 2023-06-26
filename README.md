@@ -37,3 +37,6 @@ The default credentials are 'root' for both the username and the password
 | 8082    | Note REST API    |
 | 8083    | Alert REST API   |
 | 8084    | Front-end        |
+
+# Usage
+- A Postman Collection is available ("P08-OC.postman_collection.json") with all the available Endpoints
