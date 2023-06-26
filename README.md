@@ -3,6 +3,7 @@
 Mediscreen is a multiple containers app for managing patient's note and alerting.
 
 # Architecture Diagram
+The Databases (mysqldb and nosql) and the microservices (patient, note, alert, front) are deployed in an individual container.
 ![SP09](https://github.com/tylau-dev/mediscreen/assets/62340191/ca9c48d6-c561-49a2-a6ae-e83d019c4a31)
 
 # Requirements
