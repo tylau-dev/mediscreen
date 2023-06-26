@@ -30,9 +30,10 @@ The default credentials are 'root' for both the username and the password
 
 
 5) To access the microservices locally, connect to the localhost with the following port :
+
 | Microservice | Port        |
-|---------|------------------|
+| ------- | ---------------- |
 | 8081    | Patient REST API |
-| 8082    |  Note REST API  |
-| 8083    |  Alert REST API    |
-| 8084    |  Front-end |
+| 8082    | Note REST API    |
+| 8083    | Alert REST API   |
+| 8084    | Front-end        |
