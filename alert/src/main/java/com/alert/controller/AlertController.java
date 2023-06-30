@@ -40,7 +40,7 @@ public class AlertController {
         }
     }
 
-    @RequestMapping(value = {"/api/assess/familyname"}, method = RequestMethod.GET,
+    @RequestMapping(value = {"/api/assess/familyname"}, method = RequestMethod.POST,
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Alert> getAssessmentByFamilyName(@RequestBody AlertBodyFamilyName alertBodyFamilyName) {
