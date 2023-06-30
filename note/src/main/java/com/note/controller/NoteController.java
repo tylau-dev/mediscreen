@@ -68,7 +68,6 @@ public class NoteController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> deleteNoteById(@RequestBody String id) {
         logger.info("DELETE request to /api/note");
-        logger.info(id);
 
         try {
             noteService.deleteNoteById(id);
