@@ -61,7 +61,22 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:8081/api/patient?lastname=TestNone",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"patient"
+							],
+							"query": [
+								{
+									"key": "lastname",
+									"value": "TestNone"
+								}
+							]
 						}
 					},
 					"response": []
@@ -249,7 +264,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"id\": \"6494c7ee422c4d78077d5c8a\"\r\n    }",
+							"raw": "6494c60d422c4d78077d5c7e",
 							"options": {
 								"raw": {
 									"language": "json"
